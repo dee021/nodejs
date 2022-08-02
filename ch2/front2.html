@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+
+        (async () => {
+            try{
+                const formData = new FormData(); // formData 객체 생성
+                formData.append('name', 'zerocho'); // append : 키-값 형식의 데이터 추가
+                formData.append('birth', 1994);
+                /* FormData : HTML form 태그의 데이터를 동적으로 제어할 수 있음
+                has : 주어진 키에 해당하는 값이 있는지 여부를 리턴
+                get : 주어진 키에 해당하는 값 하나를 가져옴  
+                getAll : 주어진 키에 해당하는 모든 값을 가져옴
+                delete : 현재 키를 제거
+                set : 현재 키를 수정
+                */
+                const result = await axios.post('https://www.zerocho.com/api/post/formdata', formData);
+
+                console.log(result);
+                console.log(result.data)
+            } catch (error) {
+                console.error(error)
+            }
+        })();
+
+</script>
+</head>
+<body>
+</body>
+</html>

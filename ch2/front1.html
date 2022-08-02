@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    /* AJAX : 비동기적 웹 서비스를 개발할 때 사용하는 기법으로 페이지 이동 없이 서버에 요청을 보내고 응답을 받는 기술 */
+
+    // GET1
+    // axios.get 내부에 new Promise가 들어 있으므로 then/catch 사용 가능
+    axios.get('https://www.zerocho.com/api/get')
+    .then((result) => {
+        console.log(result);
+        console.log(result.data);
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+
+    // GET2
+    // async/await 방식으로 변경
+    (async () => {
+        try {
+            axios.get('https://www.zerocho.com/api/get')
+            console.log(result);
+            console.log(result.data);
+        } catch(error) {
+            console.error(error);
+        }
+    })();
+
+    // POST
+    (async () => {
+        try {
+            axios.post('https://www.zerocho.com/api/post/json', {
+                name: 'zerocho',
+                birth: 1994,
+            });
+            console.log(result);
+            console.log(result.data);
+        } catch(error) {
+            console.error(error);
+        }
+    })();
+
+</script>
+</head>
+<body></body>
+</html>
