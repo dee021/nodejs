@@ -1,0 +1,28 @@
+URL 처리에는 크게 WHATWG 방식의 url과 예전부터 사용하던 방식의 url이 있다.
+
+주소 체계
+ex) https://user:pass@sub.host.com:8080/p/a/t/h?query=string#hash
+
+노드의 url 구분 방법
+   https:   // user      : pass     @ sub.host.com : 8080   /p/a/t/h  ? query=string # hash
+|          |  |                     |              |      |          | |   query     |      |
+|          |  |                     |              |      |          |---------------|      |
+|          |  |                     |   hostname   | port | pathname |     search    |      |
+|          |  |                     |---------------------|--------------------------|      |
+| protocol |  |         auth        |         href        |           path           | hash |
+|-------------------------------------------------------------------------------------------|
+|                                             href                                          |
+|--------------------------------------------------------------------------------------------
+
+WHATWG의 url 구분 방법
+   https:   // user      : pass     @ sub.host.com : 8080   /p/a/t/h  ? query=string # hash
+|          |  |          |          |   hostname   | port |          |               |      |
+|          |  |          |          |---------------------|          |               |      |
+| protocol |  | username | password |         host        |          |               |      |
+|-------------|---------------------|---------------------|          |               |      |
+|    origin   |                     |        origin       | pathname |     search    | hash |
+|-------------------------------------------------------------------------------------------|
+|                                             href                                          |
+---------------------------------------------------------------------------------------------
+- host 부분 없이 pathname 부분만 오는 주소인 경우 WHATWG 방식으로 처리 불가 ex) /book/booList.apsx
+- search 부분을 searchParams 객체로 반환하므로 유용함
